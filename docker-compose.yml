@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+  dev_env:
+    build: 
+      context: ./docker
+      dockerfile: 'Dockerfile.debian'
+      args: 
+        GIT_GLOBAL_USER_NAME: $GIT_GLOBAL_USER_NAME
+        GIT_GLOBAL_EMAIL: $GIT_GLOBAL_EMAIL
+    volumes: 
+      - ./chromiumos:/home/cros/chromiumos
+      - ~/.boto:/home/cros/.boto
+      - ~/.config/:/home/cros/.config/
+    working_dir: '/home/cros/chromiumos'
+    command: 'bash'
